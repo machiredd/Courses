@@ -1,0 +1,10 @@
+numba
+  - llvmlite
+  - numpy
+scipy
+  - numpy
+TimeView
+  - cython
+  - numba
+  - numpy
+  - scipy

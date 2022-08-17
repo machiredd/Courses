@@ -1,0 +1,67 @@
+import 'byte.grm' as bytelib;
+
+insspace = "" : " ";
+
+zero  = "0" : "sunna";
+one  =  "1" : "oka";
+
+delzero = "0" : "";
+
+units =   ("2" : "rendu")
+    | ("3" : "mudu")
+    | ("4" : "nalugu")
+    | ("5" : "ayidu")
+    | ("6" : "aru")
+    | ("7" : "edu")
+    | ("8" : "enimidi")
+    | ("9" : "tommidi")
+;
+
+teens =   ("10" : "padi")
+    | ("11" : "padakondu")
+    | ("12" : "pannendu")
+    | ("13" : "padamudu")
+    | ("14" : "padanalagu")
+    | ("15" : "padunayidu")
+    | ("16" : "padaharu")
+    | ("17" : "padihedu")
+    | ("18" : "padhdhenimidi")
+    | ("19" : "pandommidi")
+;
+
+decades =   ("2" : "iravai")
+      | ("3" : "muppai")
+      | ("4" : "nalabhai")
+      | ("5" : "yabhai")
+      | ("6" : "aravai")
+      | ("7" : "debbai")
+      | ("8" : "enabhai")
+      | ("9" : "tombai")
+;
+
+numbers_20_to_99 = decades delzero | decades insspace units ;
+
+numbers_to_99 = Optimize[one | units | teens | numbers_20_to_99] ;
+
+hundreds_1 = one insspace ("" : "vanda") ;
+hundreds = units insspace ("" : "vandalu") ;
+humdreds_extend = units insspace ("" : "vandala") ;
+
+thousands_1 = one insspace ("" : "veyyi");
+thousands = numbers_to_99 insspace ("" : "vellu");
+thousands_extend = numbers_to_99 insspace ("" : "vella");
+
+numbers_100_to_999 =
+Optimize[
+  hundreds_1 delzero delzero |
+  hundreds delzero delzero |
+  humdreds_extend delzero insspace units |
+  humdreds_extend insspace teens |
+  humdreds_extend insspace numbers_20_to_99]
+;
+
+numbers_to_999 = Optimize[numbers_to_99 | numbers_100_to_999];
+
+numbers_1000_to_99999= Optimize[thousands_1 delzero delzero delzero |  thousands delzero delzero delzero | thousands_extend insspace numbers_100_to_999];
+
+export numbers_in_telugu = Optimize[numbers_to_999|numbers_1000_to_99999];

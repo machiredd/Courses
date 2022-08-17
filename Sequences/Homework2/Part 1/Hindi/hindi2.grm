@@ -1,0 +1,185 @@
+import 'byte.grm' as bytelib;
+
+sigma_star = bytelib.kBytes*;
+
+insspace = "" : " ";
+
+zero  = "0" : "sunya";
+
+delzero = "0" : "";
+
+units =   ("1" : "ek")
+    | ("2" : "do")
+    | ("3" : "teen")
+    | ("4" : "chaar")
+    | ("5" : "panch")
+    | ("6" : "cha")
+    | ("7" : "saat")
+    | ("8" : "ath")
+    | ("9" : "nau")
+;
+
+decades=("10" : "dus")|("20" : "bees")|("30" : "tis")|("40" : "chalis")|("50" : "pachas")|("60" : "sath")|("70" : "sattar")|("80" : "assi")|("90" : "nabbe");
+
+
+num_i_11_to_18 = ("11" : "gyar")
+    | ("12" : "bar")
+    | ("13" : "ter")
+    | ("14" : "chaud")
+    | ("15" : "pandr")
+    | ("16" : "sol")
+    | ("17" : "satr")
+    | ("18" : "atthar")
+;
+
+end_11_to_18 = "" : "ah";
+new_result1 = CDRewrite[end_11_to_18, "", "[EOS]", sigma_star];
+num_11_to_18=Optimize[num_i_11_to_18 @ new_result1];
+
+num_i_19_to_28 = ("19" : "unn")
+    | ("21" : "ikk")
+    | ("22" : "ba")
+    | ("23" : "te")
+    | ("24" : "chaub")
+    | ("25" : "pachch")
+    | ("26" : "chabb")
+    | ("27" : "satta")
+    | ("28" : "attha")
+;
+
+end_19_to_28 = "" : "is";
+new_result2 = CDRewrite[end_19_to_28, "", "[EOS]", sigma_star];
+num_19_to_28=Optimize[num_i_19_to_28 @ new_result2];
+
+num_i_29_to_38 =  ("29" : "una")
+    | ("31" : "ika")
+    | ("32" : "bat")
+    | ("33" : "taim")
+    | ("34" : "chaum")
+    | ("35" : "paim")
+    | ("36" : "chat")
+    | ("37" : "saim")
+    | ("38" : "ara")
+;
+
+end_29_to_38 = "" : "tis";
+new_result3 = CDRewrite[end_29_to_38, "", "[EOS]", sigma_star];
+num_29_to_38=Optimize[num_i_29_to_38 @ new_result3];
+
+
+num_i_39_to_48 = ("39" : "unch")
+    | ("41" : "ikat")
+    | ("42" : "bay")
+    | ("43" : "taimt")
+    | ("44" : "chaumt")
+    | ("45" : "paimt")
+    | ("46" : "chiy")
+    | ("47" : "saimt")
+    | ("48" : "arat")
+;
+
+end_39_to_48 = "" : "alis";
+new_result4 = CDRewrite[end_39_to_48, "", "[EOS]", sigma_star];
+num_39_to_48=Optimize[num_i_39_to_48 @ new_result4];
+
+num_49_to_50 = ("49" : "unachas") | ("50" : "pachas");
+
+num_i_51_to_58 = ("51" : "ikyab")
+    | ("52" : "bav")
+    | ("53" : "tirep")
+    | ("54" : "chaub")
+    | ("55" : "pachap")
+    | ("56" : "chapp")
+    | ("57" : "sattav")
+    | ("58" : "atthav")
+;
+
+end_51_to_58 = "" : "an";
+new_result5 = CDRewrite[end_51_to_58, "", "[EOS]", sigma_star];
+num_51_to_58=Optimize[num_i_51_to_58 @ new_result5];
+
+num_i_59_to_68 = ("59" : "ika")
+    | ("61" : "ika")
+    | ("62" : "ba")
+    | ("63" : "tira")
+    | ("64" : "chaum")
+    | ("65" : "paim")
+    | ("66" : "chiya")
+    | ("67" : "sara")
+    | ("68" : "ara")
+;
+
+end_59_to_68 = "" : "sath";
+new_result6 = CDRewrite[end_59_to_68, "", "[EOS]", sigma_star];
+num_59_to_68=Optimize[num_i_59_to_68 @ new_result6];
+
+
+num_i_69_to_78 = ("69" : "una")
+    | ("71" : "ika")
+    | ("72" : "ba")
+    | ("73" : "ti")
+    | ("74" : "chau")
+    | ("75" : "pacha")
+    | ("76" : "chi")
+    | ("77" : "sata")
+    | ("78" : "atha")
+;
+
+end_69_to_78 = "" : "hattar";
+new_result7 = CDRewrite[end_69_to_78, "", "[EOS]", sigma_star];
+num_69_to_78=Optimize[num_i_69_to_78 @ new_result7];
+
+
+num_i_79_to_89 = ("79" : "un")
+    | ("81" : "iky")
+    | ("82" : "bay")
+    | ("83" : "tir")
+    | ("84" : "chaur")
+    | ("85" : "pach")
+    | ("86" : "chiy")
+    | ("87" : "sat")
+    | ("88" : "ath")
+    | ("89" : "nav")
+;
+
+end_79_to_89 = "" : "asi";
+new_result8 = CDRewrite[end_79_to_89, "", "[EOS]", sigma_star];
+num_79_to_89=Optimize[num_i_79_to_89 @ new_result8];
+
+
+num_i_91_to_99 = ("91" : "ikya")
+    | ("92" : "ba")
+    | ("93" : "tir")
+    | ("94" : "chaur")
+    | ("95" : "panch")
+    | ("96" : "chiya")
+    | ("97" : "satta")
+    | ("98" : "attha")
+    | ("99" : "ninya")
+;
+
+end_91_to_99 = "" : "nave";
+new_result9 = CDRewrite[end_91_to_99, "", "[EOS]", sigma_star];
+num_91_to_99=Optimize[num_i_91_to_99 @ new_result9];
+
+numbers_10_to_99 = Optimize [decades | num_11_to_18 | num_19_to_28 | num_29_to_38 | num_39_to_48 | num_49_to_50 | num_51_to_58 | num_59_to_68 | num_69_to_78 | num_79_to_89 | num_91_to_99];
+
+numbers_to_99 = Optimize [ units | decades | num_11_to_18 | num_19_to_28 | num_29_to_38 | num_39_to_48 | num_49_to_50 | num_51_to_58 | num_59_to_68 | num_69_to_78 | num_79_to_89 | num_91_to_99];
+
+hundreds = units insspace ("" : "sau") ;
+
+thousands = numbers_to_99 insspace ("" : "hazar") ;
+
+numbers_100_to_999 = Optimize[hundreds delzero delzero | hundreds delzero insspace units | hundreds insspace numbers_10_to_99];
+
+numbers_1000_to_99999= Optimize[thousands delzero delzero delzero | thousands delzero delzero  insspace units | thousands delzero insspace numbers_to_99 | thousands insspace numbers_100_to_999];
+
+
+numbers_to_999 = Optimize[numbers_to_99 | numbers_100_to_999];
+
+export numbers_in_hindi2 = Optimize[numbers_to_999|numbers_1000_to_99999];
+
+
+
+
+

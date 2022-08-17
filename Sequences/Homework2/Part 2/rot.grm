@@ -1,0 +1,18 @@
+import 'byte.grm' as bytelib;
+
+pp=LoadFst['pride_and_prejudice_sentences.fst'];
+
+sigma_star = bytelib.kBytes*;
+
+export sub=("a":"n")|("b":"o")|("c":"p")|("d":"q")|("e":"r")|("f":"s")|("g":"t")|("h":"u")|("i":"v")|("j":"w")|("k":"x")|("l":"y")|("m":"z")|("n":"a")|("o":"b")|("p":"c")|("q":"d")|("r":"e")|("s":"f")|("t":"g")|("u":"h")|("v":"i")|("w":"j")|("x":"k")|("y":"l")|("z":"m")|("A":"N")|("B":"O")|("C":"P")|("D":"Q")|("E":"R")|("F":"S")|("G":"T")|("H":"U")|("I":"V")|("J":"W")|("K":"X")|("L":"Y")|("M":"Z")|("N":"A")|("O":"B")|("P":"C")|("Q":"D")|("R":"E")|("S":"F")|("T":"G")|("U":"H")|("V":"I")|("W":"J")|("X":"K")|("Y":"L")|("Z":"M");
+
+export rot13=CDRewrite[sub, "", "", sigma_star];
+
+export sentence = Optimize["Ule zhguve nayl fpryqbq ube she ovrat ahafvafnpry." @ rot13];
+
+export new=("a":"e")|("a":"i")|("a":"o")|("a":"u")|("a":"y")|("e":"a")|("e":"i")|("e":"o")|("e":"u")|("e":"y")|("i":"e")|("i":"a")|("i":"o")|("i":"u")|("i":"y")|("o":"e")|("o":"i")|("o":"a")|("o":"u")|("o":"y")|("u":"e")|("u":"i")|("u":"o")|("u":"a")|("u":"y")|("y":"e")|("y":"i")|("y":"o")|("y":"u")|("y":"y")|("A":"E")|("A":"I")|("A":"O")|("A":"U")|("A":"Y")|("E":"A")|("E":"I")|("E":"O")|("E":"U")|("E":"Y")|("I":"E")|("I":"A")|("I":"O")|("I":"U")|("I":"Y")|("O":"E")|("O":"I")|("O":"A")|("O":"U")|("O":"Y")|("U":"E")|("U":"I")|("U":"O")|("U":"A")|("U":"Y")|("Y":"E")|("Y":"I")|("Y":"O")|("Y":"U")|("Y":"A");
+
+export vowel_scramble=CDRewrite[new, "", "", sigma_star];
+
+export decoded_sentence = Optimize["Ule zhguve nayl fpryqbq ube she ovrat ahafvafnpry." @ rot13 @ vowel_scramble @ pp];
+

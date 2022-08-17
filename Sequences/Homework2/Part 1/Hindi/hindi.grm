@@ -1,0 +1,123 @@
+import 'byte.grm' as bytelib;
+
+insspace = "" : " ";
+
+zero  = "0" : "sunya";
+
+delzero = "0" : "";
+
+units =   ("1" : "ek")
+    | ("2" : "do")
+    | ("3" : "teen")
+    | ("4" : "chaar")
+    | ("5" : "panch")
+    | ("6" : "cha")
+    | ("7" : "saat")
+    | ("8" : "ath")
+    | ("9" : "nau")
+;
+
+others =   ("10" : "das")
+    | ("11" : "gyarah")
+    | ("12" : "barah")
+    | ("13" : "terah")
+    | ("14" : "chaudah")
+    | ("15" : "pandrah")
+    | ("16" : "solah")
+    | ("17" : "satrah")
+    | ("18" : "attharah")
+    | ("19" : "unnis")
+    | ("21" : "ikkis")
+    | ("22" : "bais")
+    | ("23" : "teis")
+    | ("24" : "chaubis")
+    | ("25" : "pachchis")
+    | ("26" : "chabbis")
+    | ("27" : "sattais")
+    | ("28" : "atthais")
+    | ("29" : "unatis")
+    | ("31" : "ikatis")
+    | ("32" : "battis")
+    | ("33" : "taimtis")
+    | ("34" : "chaumtis")
+    | ("35" : "paimtis")
+    | ("36" : "chattis")
+    | ("37" : "saimtis")
+    | ("38" : "aratis")
+    | ("39" : "unchalis")
+    | ("41" : "ikatalis")
+    | ("42" : "bayalis")
+    | ("43" : "taimtalis")
+    | ("44" : "chaumtalis")
+    | ("45" : "paimtalis")
+    | ("46" : "chiyalis")
+    | ("47" : "saimtalis")
+    | ("48" : "aratalis")
+    | ("49" : "unachas")
+    | ("51" : "ikyaban")
+    | ("52" : "bavan")
+    | ("53" : "tirepan")
+    | ("54" : "chauban")
+    | ("55" : "pachapan")
+    | ("56" : "chappan")
+    | ("57" : "sattavan")
+    | ("58" : "atthavan")
+    | ("59" : "ikasath")
+    | ("61" : "ikasath")
+    | ("62" : "basath")
+    | ("63" : "tirasath")
+    | ("64" : "chaumsath")
+    | ("65" : "paimsath")
+    | ("66" : "chiyasath")
+    | ("67" : "sarasath")
+    | ("68" : "arasath")
+    | ("69" : "unahattar")
+    | ("71" : "ikahattar")
+    | ("72" : "bahattar")
+    | ("73" : "tihattar")
+    | ("74" : "chauhattar")
+    | ("75" : "pachahattar")
+    | ("76" : "chihattar")
+    | ("77" : "satahattar")
+    | ("78" : "athahattar")
+    | ("79" : "unasi")
+    | ("80" : "assi")
+    | ("81" : "ikyasi")
+    | ("82" : "bayasi")
+    | ("83" : "tirasi")
+    | ("84" : "chaurasi")
+    | ("85" : "pachasi")
+    | ("86" : "chiyasi")
+    | ("87" : "satasi")
+    | ("88" : "athasi")
+    | ("89" : "navasi")
+    | ("91" : "ikyanabe")
+    | ("92" : "banave")
+    | ("93" : "tirnave")
+    | ("94" : "chaurnave")
+    | ("95" : "panchnave")
+    | ("96" : "chiyanave")
+    | ("97" : "sattanave")
+    | ("98" : "atthanave")
+    | ("99" : "ninyanave")
+;
+
+decades=("20" : "bees")|("30" : "tis")|("40" : "chalis")|("50" : "pachas")|("60" : "sath")|("70" : "sattar")|("80" : "assi")|("90" : "nabbe");
+
+numbers_20_to_99 = decades delzero | others ;
+
+numbers_to_99 = Optimize[units | numbers_20_to_99] ;
+
+hundreds = units insspace ("" : "sau") ;
+
+thousands = numbers_to_99 insspace ("" : "hazar") ;
+
+numbers_100_to_999 = Optimize[hundreds delzero delzero | hundreds delzero insspace units | hundreds insspace numbers_20_to_99];
+
+numbers_1000_to_99999= Optimize[thousands delzero delzero delzero | thousands delzero delzero  insspace units | thousands delzero insspace numbers_to_99 | thousands insspace numbers_100_to_999];
+
+
+numbers_to_999 = Optimize[numbers_to_99 | numbers_100_to_999];
+
+export numbers_in_hindi = Optimize[numbers_to_999|numbers_1000_to_99999];
+

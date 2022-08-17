@@ -1,0 +1,63 @@
+import 'byte.grm' as bytelib;
+
+insspace = "" : " ";
+
+zero  = "0" : "zero";
+
+delzero = "0" : "";
+
+units =   ("1" : "one")
+    | ("2" : "two")
+    | ("3" : "three")
+    | ("4" : "four")
+    | ("5" : "five")
+    | ("6" : "six")
+    | ("7" : "seven")
+    | ("8" : "eight")
+    | ("9" : "nine")
+;
+
+teens =   ("10" : "ten")
+    | ("11" : "eleven")
+    | ("12" : "twelve")
+    | ("13" : "thirteen")
+    | ("14" : "fourteen")
+    | ("15" : "fifteen")
+    | ("16" : "sixteen")
+    | ("17" : "seventeen")
+    | ("18" : "eighteen")
+    | ("19" : "nineteen")
+;
+
+decades =   ("2" : "twenty")
+      | ("3" : "thirty")
+      | ("4" : "forty")
+      | ("5" : "fifty")
+      | ("6" : "sixty")
+      | ("7" : "seventy")
+      | ("8" : "eighty")
+      | ("9" : "ninety")
+;
+
+numbers_20_to_99 = decades delzero | decades insspace units ;
+
+numbers_to_99 = Optimize[units | teens | numbers_20_to_99] ;
+
+hundreds = units insspace ("" : "hundred") ;
+
+thousands = numbers_to_99 insspace ("" : "thousand");
+
+numbers_100_to_999 =
+Optimize[
+  hundreds delzero delzero |
+  hundreds delzero insspace units |
+  hundreds insspace teens |
+  hundreds insspace numbers_20_to_99]
+;
+
+numbers_1000_to_99999= Optimize[thousands insspace numbers_100_to_999];
+
+
+numbers_to_999 = Optimize[numbers_to_99 | numbers_100_to_999];
+
+export numbers_to_99999 = Optimize[numbers_to_999|numbers_1000_to_99999];
